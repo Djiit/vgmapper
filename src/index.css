@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.footer {
+    background-color: whitesmoke;
+    padding: 1rem 1.5rem 1rem;
+}

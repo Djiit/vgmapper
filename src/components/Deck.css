@@ -1,0 +1,10 @@
+.Deck {
+  display: flex;
+  height:100vh;
+  flex-direction: column;
+  padding-top: 5%;
+}
+
+.Deck__main {
+  flex: 1;
+}
