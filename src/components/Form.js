@@ -30,7 +30,7 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.state.name !== '') {
+    if (this.state.name !== '' && this.props.user.pos) {
       this.props.actions.fetchUserData({...this.state});
       this.props.actions.fetchNearbyUsers(this.state.region);
     }
@@ -59,7 +59,7 @@ class Form extends Component {
               </span>
             </p>
             <p className="control">
-              <input className="button is-primary" type="submit" value="Submit"/>
+              <input className={"button is-primary" + (!this.props.user.pos? " is-disabled" : "")} type="submit" value="Submit"/>
             </p>
           </form>
         </div>
