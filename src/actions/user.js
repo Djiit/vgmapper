@@ -49,7 +49,7 @@ export const fetchUserData = (user) => {
       .then((responseJson) => {
         // Save user data in Firebase
         firebaseRef.ref().child('locations/'+user.region+'/'+responseJson.data[0].id).update({timestamp});
-        // dataBase[user.region].set(responseJson.data[0].id, pos);
+        dataBase[user.region].set(responseJson.data[0].id, pos);
         return dispatch(setUserData(user));
       })
       .catch((error) => {
