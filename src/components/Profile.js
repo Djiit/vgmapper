@@ -13,6 +13,7 @@ class Profile extends Component {
         <p className="title is-4">{this.props.user.currentPlayer.attributes.name}</p>
         <p>lvl {this.props.user.currentPlayer.attributes.stats.level || "?"}</p>
         <p>Lifetime Gold {this.props.user.currentPlayer.attributes.stats.lifetimeGold || "?"}</p>
+        <p>Distance : {this.props.user.currentPlayer.distance} m</p>
       </div>
     ) : (
       <div>

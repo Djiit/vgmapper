@@ -1,16 +1,16 @@
-# VainGlory Community Mapper
+# Vainglory Community Mapper
 
-Find VainGlory players around you ! [See it in action here](https://vainglory.crtx.gg).
+Find Vainglory players around you ! [See it in action here](https://vainglory.crtx.gg).
 
 ## Usage
 
-You will need your own Firebase & VainGlory API key to run your own instance.
+You will need your own FireBase & Vainglory API key to run your own instance.
 Create `src/config.js` :
 
 ```javascript
 const config = {
-  FB_API_KEY: "<your firebase API key>",
-  VG_API_KEY: "<your VainGlory API key>"
+  FB_API_KEY: "<your FireBase API key>",
+  VG_API_KEY: "<your Vainglory API key>"
 }
 
 export default config;

@@ -39,13 +39,14 @@ export const setUserData = (user) => {
 export const fetchUserData = (user) => {
   return (dispatch, getState) => {
     const pos = getState().user.pos;
-    fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players/?filter[playerName]='+user.name, {headers: headers}) // here : replace "eu" by region in store
+    fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players?filter[playerName]='+user.name, {headers: headers}) // here : replace "eu" by region in store
       .then((response) => {
         //console.log(response) // see response object here. How can we show the user 404, etc...
         return response.json()
       })
       .then((responseJson) => {
-        dataBase[user.region].set(responseJson.data.id, pos);
+        // Save user data in Firebase
+        dataBase[user.region].set(responseJson.data[0].id, pos);
         return dispatch(setUserData(user));
       })
       .catch((error) => {

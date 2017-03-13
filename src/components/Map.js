@@ -39,7 +39,7 @@ class VainLocatorMap extends Component {
 
   _onChildClick = (key, childProps) => {
     const player = this.props.user.players.filter((e) => e.id === key)[0];
-    this.props.actions.setCurrentPlayer(player); // a remplacer avec FetchCurrentPlayer si on veut récup un timestamp ?
+    this.props.actions.setCurrentPlayer(player);
   }
 
   render() {
