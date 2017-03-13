@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "6"
+branches:
+  only:
+    - master
+deploy:
+  provider: firebase
+  token:
+    secure: "j/lLzNEVQ8afHnNw8twNKddhf805a43i9yWCDdDu3pPdQ78/D4t3gzj7vx0iwowrEd9rfRlqFcVTUGktWoyeuhQ0ptorYaKMnkhszuHMd3rf2qYZAdfcoQwGIIS7o/RXfpGpu9rXDWwLEYWGwMhDsxl2aTWiZA0PhZsR8pD1cctYANoFozvOGXsXBz5NcxVnRUDswAZdHUbp6oZDqxDRa/bYQkdQZZyH9/EgbDi8Rx7mZKYWczq1PeVOp4BhLEsAodmE48vzj038kPGpqAUapAakT9dftNB6N7ZPJZ7XlLjOJsOw70ZU21iliIEucLwGi/1WoLM1MRWv2aptPHX6EtYGwanhOKkoeKbys4r5lsqwWS+V5o+5mGO3TIWsxdmxAxLpGH9TQ5HWOHHfj7jbif/yMmbzYUZ/MUVIitbOmqhqKwt5p50kDjH91Vfguk0udfQ3HI/723VMug45+OWIzVT/zx9j2jKfab9OwHB5QuNNriMXWXAlEsIGWKd4pAYtZ9Ledq3MNWDsPXiSu7i+0o71gfHVLnEuNsEACeQTJaMfW+S7ndY34U05luJ+U7CBsgjSvPp+S2k/Gu3lmKPm6Klj3gZ+DKfH57GoVL8eHpifrwrMK9vcqFLN0pepIzMNvIj8m22cnxozt8MlrGvtcUVKDQLwFFrksrO/Mjqzrx0="
