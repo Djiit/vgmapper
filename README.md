@@ -24,4 +24,5 @@ See [CHANGELOG](./CHANGELOG.md).
 
 Made with <3 by [Djiit](https://twitter.com/Djiit).
 
-Have an idea ? Found a bug ? Tell me on Twitter !
+Found a bug ? [Please file up an issue](https://github.com/Djiit/vgmapper/issues).
+Have an idea ? Tell me on Twitter !
