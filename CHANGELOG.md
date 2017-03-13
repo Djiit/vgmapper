@@ -3,6 +3,7 @@
 ## 0.2.1
 
 * *FIX* minor CSS fix.
+* *FIX* an error while saving location in DB.
 
 ## 0.2.0
 
