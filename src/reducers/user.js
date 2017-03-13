@@ -7,7 +7,8 @@ export default(state = {players:[]}, payload) => {
       };
     case 'SET_USER_POS':
       return {...state,
-        pos: [payload.lat, payload.lon]
+        pos: [payload.lat, payload.lon],
+        timestamp: payload.timestamp
       };
     case 'ADD_NEW_PLAYER':
       state.players.push(payload.player);

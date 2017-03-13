@@ -25,7 +25,7 @@ class VainLocatorMap extends Component {
         }
       });
       console.log('Found location. Processing...')
-      this.props.actions.setUserPosition(pos.coords.latitude, pos.coords.longitude);
+      this.props.actions.setUserPosition(pos.coords.latitude, pos.coords.longitude, pos.timestamp);
     })
   }
 

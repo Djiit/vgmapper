@@ -22,11 +22,11 @@ firebase.initializeApp(firebaseOptions);
 
 const firebaseRef = firebase.database();
 const dataBase = {
-  'na': new GeoFire(firebaseRef.ref('locations').child('na')),
-  'eu': new GeoFire(firebaseRef.ref('locations').child('eu')),
-  'ea': new GeoFire(firebaseRef.ref('locations').child('ea')),
-  'sa': new GeoFire(firebaseRef.ref('locations').child('sa')),
-  'sea': new GeoFire(firebaseRef.ref('locations').child('sea'))
+  'na': new GeoFire(firebaseRef.ref('locations/na')),
+  'eu': new GeoFire(firebaseRef.ref('locations/eu')),
+  'ea': new GeoFire(firebaseRef.ref('locations/ea')),
+  'sa': new GeoFire(firebaseRef.ref('locations/sa')),
+  'sea': new GeoFire(firebaseRef.ref('locations/sea'))
 }
 
 export const setUserData = (user) => {
@@ -38,7 +38,9 @@ export const setUserData = (user) => {
 
 export const fetchUserData = (user) => {
   return (dispatch, getState) => {
-    const pos = getState().user.pos;
+    const { pos, timestamp } = getState().user;
+    console.log(pos)
+    console.log(timestamp)
     fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players?filter[playerName]='+user.name, {headers: headers}) // here : replace "eu" by region in store
       .then((response) => {
         //console.log(response) // see response object here. How can we show the user 404, etc...
@@ -46,7 +48,8 @@ export const fetchUserData = (user) => {
       })
       .then((responseJson) => {
         // Save user data in Firebase
-        dataBase[user.region].set(responseJson.data[0].id, pos);
+        firebaseRef.ref().child('locations/'+user.region+'/'+responseJson.data[0].id).update({timestamp});
+        // dataBase[user.region].set(responseJson.data[0].id, pos);
         return dispatch(setUserData(user));
       })
       .catch((error) => {
@@ -55,10 +58,10 @@ export const fetchUserData = (user) => {
   }
 }
 
-export const setUserPosition = (lat, lon) => {
+export const setUserPosition = (lat, lon, timestamp) => {
   return {
     type: "SET_USER_POS",
-    lat,lon
+    lat, lon, timestamp
   };
 }
 
@@ -69,7 +72,7 @@ export const addNewPlayer = (player) => {
   };
 }
 
-export const fetchNearbyUsers = (region) => {
+export const fetchNearbyUsers = (region) => { // obligé de passer region ?
   return (dispatch, getState) => {
       const pos = getState().user.pos;
       const geoQuery = dataBase[region].query({
@@ -79,11 +82,18 @@ export const fetchNearbyUsers = (region) => {
 
     geoQuery.on("key_entered", (key, location, distance) => {
      console.log(key + " " + location + " " + distance);
-     fetch('https://api.dc01.gamelockerapp.com/shards/'+region+'/players/'+key, {headers: headers}) // here : replace "eu" by region in store
+     // Ask VG API
+     fetch('https://api.dc01.gamelockerapp.com/shards/'+region+'/players/'+key, {headers: headers})
        .then((response) => response.json())
        .then((responseJson) => {
          console.log({...responseJson.data, location, distance})
-         return dispatch(addNewPlayer({...responseJson.data, location, distance}));
+         return {...responseJson.data, location, distance};
+       })
+       .then((playerData) => {
+         firebaseRef.ref('/locations/' + region + '/' + key).once('value').then(function(snapshot) {
+           const timestamp = snapshot.val().timestamp;
+          return dispatch(addNewPlayer({...playerData, timestamp}));
+        })
        })
        .catch((error) => {
        console.log(error.message);
