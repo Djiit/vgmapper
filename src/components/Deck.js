@@ -36,7 +36,7 @@ class Deck extends Component {
           <footer className="footer">
             <div className="container">
               <div className="content has-text-centered">
-                <p className="Deck__footer">v0.2.1 - made with ♥️ by Djiit</p>
+                <p className="Deck__footer">v0.3.0 - made with ♥️ by Djiit</p>
               </div>
             </div>
           </footer>
