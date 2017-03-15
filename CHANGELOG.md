@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.3.0
+
+* *ADD* Major profile changes.
+* *FIX* Handle current user profile.
+* *FIX* Avoid submitting an user without geolocation info.
+* *ADD* games count in player profile.
+
 ## 0.2.1
 
 * *FIX* minor CSS fix.

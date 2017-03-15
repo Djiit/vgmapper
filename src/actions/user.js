@@ -39,8 +39,6 @@ export const setUserData = (user) => {
 export const fetchUserData = (user) => {
   return (dispatch, getState) => {
     const { pos, timestamp } = getState().user;
-    console.log(pos)
-    console.log(timestamp)
     fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players?filter[playerName]='+user.name, {headers: headers}) // here : replace "eu" by region in store
       .then((response) => {
         //console.log(response) // see response object here. How can we show the user 404, etc...
@@ -77,11 +75,10 @@ export const fetchNearbyUsers = (region) => { // obligé de passer region ?
       const pos = getState().user.pos;
       const geoQuery = dataBase[region].query({
       center: pos, // User geoloc
-      radius: 1500 // 15km around
+      radius: 1500000 // 15km around
     });
 
     geoQuery.on("key_entered", (key, location, distance) => {
-     console.log(key + " " + location + " " + distance);
      // Ask VG API
      fetch('https://api.dc01.gamelockerapp.com/shards/'+region+'/players/'+key, {headers: headers})
        .then((response) => response.json())
