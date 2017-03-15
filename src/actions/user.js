@@ -77,11 +77,10 @@ export const fetchNearbyUsers = (region) => { // obligé de passer region ?
       const pos = getState().user.pos;
       const geoQuery = dataBase[region].query({
       center: pos, // User geoloc
-      radius: 1500 // 15km around
+      radius: 1500000 // 15km around
     });
 
     geoQuery.on("key_entered", (key, location, distance) => {
-     console.log(key + " " + location + " " + distance);
      // Ask VG API
      fetch('https://api.dc01.gamelockerapp.com/shards/'+region+'/players/'+key, {headers: headers})
        .then((response) => response.json())

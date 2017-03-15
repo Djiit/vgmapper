@@ -13,7 +13,7 @@ const PlayerMarker = ({ text }) => <span className="tag is-vg"> {text} </span>;
 class VainLocatorMap extends Component {
   state = {
     center: {lat: 48.866667, lng: 2.333333},
-    zoom: 14
+    zoom: 10
   };
 
   componentDidMount() {
@@ -24,12 +24,11 @@ class VainLocatorMap extends Component {
           lng: pos.coords.longitude
         }
       });
-      console.log('Found location. Processing...')
       this.props.actions.setUserPosition(pos.coords.latitude, pos.coords.longitude, pos.timestamp);
     })
   }
 
-  // vriament utile ?
+  // FIXME: needed?
   _onChange = ({center, zoom}) => {
     this.setState({
       center: center,

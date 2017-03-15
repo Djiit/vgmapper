@@ -1,41 +1,45 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import moment from 'moment';
-
-import * as userActions from '../actions/user';
 
 import './Profile.css';
 
 class Profile extends Component {
   render() {
-    return this.props.user.currentPlayer ? (
+    const player = this.props.player;
+    const defeatsCount = player.attributes.stats.played
+      ? player.attributes.stats.played - player.attributes.stats.wins
+      : 0;
+
+    const mapperInfo = !this.props.isCurrentUser
+      ? (
+        <div>
+          <br/>
+          <p>
+            <span className="icon"> <i className="fa fa-location-arrow"></i> </span>
+            &nbsp;{player.distance.toFixed(2)} km
+          </p>
+          <p>
+            <span className="icon"> <i className="fa fa-clock-o"></i> </span>
+            &nbsp;{moment(player.timestamp).fromNow()}
+          </p>
+        </div>
+      ) : null;
+    return (
       <div className="has-text-left">
-        <p className="title is-4 has-text-centered">{this.props.user.currentPlayer.attributes.name}</p>
-        <p>Level {this.props.user.currentPlayer.attributes.stats.level || "?"}</p>
-        <p>Lifetime Gold : {this.props.user.currentPlayer.attributes.stats.lifetimeGold || "?"}</p>
-        <p>Distance : {Math.round(this.props.user.currentPlayer.distance)} m</p>
-        <p>Last seen :  {moment(this.props.user.currentPlayer.timestamp).fromNow()}</p>
-      </div>
-    ) : (
-      <div>
+        <p className="title is-4 has-text-centered">{player.attributes.name}</p>
+        <hr/>
         <p>
-          {this.props.user.name
-            ? "Click on any player name to see his profile."
-            : "Let's find the VainGlory players around you ! \nFirst, tell me who you are."
-          }
+          <span className="icon"> <i className="fa fa-user"></i> </span>
+          &nbsp;lvl {player.attributes.stats.level || "?"} ({player.attributes.stats.xp || "?"} xp)</p>
+        <p>
+          <span className="icon"> <i className="fa fa-trophy"></i> </span>
+          &nbsp;{player.attributes.stats.wins || "?"} W / {defeatsCount} L
         </p>
+        {/* <p>Lifetime Gold : {player.attributes.stats.lifetimeGold || "?"}</p> */}
+        {mapperInfo}
       </div>
     );
   }
 }
 
-function mapStateToProps(state, props) {
-    return state;
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(userActions, dispatch)
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;
