@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import config from '../config';
 import Form from './Form';
 import * as userActions from '../actions/user';
 
@@ -55,7 +56,7 @@ class VainLocatorMap extends Component {
     }
     return this.props.user.name ? (
       <GoogleMapReact
-        bootstrapURLKeys={{key: 'AIzaSyCXZQgUjng-e67r22xPL5XjRyaJoIuDQNg'}}
+        bootstrapURLKeys={{key: config.GM_API_KEY}}
         center={this.state.center}
         zoom={this.state.zoom}
         onChange={this._onChange}

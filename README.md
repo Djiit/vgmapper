@@ -10,6 +10,7 @@ Create `src/config.js` :
 ```javascript
 const config = {
   FB_API_KEY: "<your FireBase API key>",
+  GM_API_KEY: "<your Google API key>",
   VG_API_KEY: "<your Vainglory API key>"
 }
 

@@ -75,7 +75,7 @@ export const fetchNearbyUsers = (region) => { // obligé de passer region ?
       const pos = getState().user.pos;
       const geoQuery = dataBase[region].query({
       center: pos, // User geoloc
-      radius: 1500000 // 15km around
+      radius: 1500000 // 15000km around for now
     });
 
     geoQuery.on("key_entered", (key, location, distance) => {

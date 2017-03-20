@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.1
+
+* *ADD* OpenGraph basic properties.
+* *FIX* Move GOOGLE API KEY to config.js.
+
 ## 0.3.0
 
 * *ADD* Major profile changes.
