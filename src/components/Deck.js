@@ -18,12 +18,15 @@ class Deck extends Component {
         />
       : (
         <div>
-          <p>
-            {this.props.user.name
-              ? "Click on any player name to see his profile."
-              : "Let's find the VainGlory players around you ! First, tell me who you are."
-            }
-          </p>
+          {this.props.user.name
+            ? "Click on any player name to see his profile."
+            : (
+              <div>
+                <p>Let's find the VainGlory players around you !</p><br/>
+                <p>First, tell me who you are and your location will be added to the Community Map.</p>
+              </div>
+            )
+          }
         </div>
       )
     return (
@@ -34,11 +37,11 @@ class Deck extends Component {
             {mainSection}
           </div>
           <footer className="footer">
-            <div className="container">
-              <div className="content has-text-centered">
-                <p className="Deck__footer">v0.3.1 - made with ♥️ by Djiit</p>
-              </div>
-            </div>
+            <span className="is-pulled-right">
+              <a href="https://github.com/Djiit/vgmapper" target="_blank"><span className="icon"><i className="fa fa-github"></i></span></a>
+              <a href="https://twitter.com/Djiit" target="_blank"><span className="icon"><i className="fa fa-twitter"></i></span></a>
+            </span>
+            <span className="is-pulled-left">v0.3.2</span>
           </footer>
         </div>
     );

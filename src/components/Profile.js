@@ -15,11 +15,11 @@ class Profile extends Component {
         <div>
           <br/>
           <p>
-            <span className="icon"> <i className="fa fa-location-arrow"></i> </span>
+            <span className="icon"><i className="fa fa-location-arrow"></i></span>
             &nbsp;{player.distance.toFixed(2)} km
           </p>
           <p>
-            <span className="icon"> <i className="fa fa-clock-o"></i> </span>
+            <span className="icon"><i className="fa fa-clock-o"></i></span>
             &nbsp;{moment(player.timestamp).fromNow()}
           </p>
         </div>
@@ -29,10 +29,10 @@ class Profile extends Component {
         <p className="title is-4 has-text-centered">{player.attributes.name}</p>
         <hr/>
         <p>
-          <span className="icon"> <i className="fa fa-user"></i> </span>
+          <span className="icon"><i className="fa fa-user"></i></span>
           &nbsp;lvl {player.attributes.stats.level || "?"} ({player.attributes.stats.xp || "?"} xp)</p>
         <p>
-          <span className="icon"> <i className="fa fa-trophy"></i> </span>
+          <span className="icon"><i className="fa fa-trophy"></i></span>
           &nbsp;{player.attributes.stats.wins || "?"} W / {defeatsCount} L
         </p>
         {/* <p>Lifetime Gold : {player.attributes.stats.lifetimeGold || "?"}</p> */}

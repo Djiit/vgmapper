@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.3.2
+
+* *ADD* proper disclaimer about user location being saved in DB.
+* *FIX* Links in footer.
+* *FIX* README instructions.
+
 ## 0.3.1
 
 * *ADD* OpenGraph basic properties.

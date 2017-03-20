@@ -4,6 +4,8 @@ Find Vainglory players around you ! [See it in action here](https://vainglory.cr
 
 ## Usage
 
+First, clone the projet (or fork it first, then clone it).
+
 You will need your own FireBase & Vainglory API key to run your own instance.
 Create `src/config.js` :
 
@@ -17,6 +19,17 @@ const config = {
 export default config;
 ```
 
+You're good to go! open a terminal and type :
+
+```bash
+npm install   # Fetch JS dependencies.
+npm start     # Start a development server.
+```
+
+For production use, you should build an optimized version with `npm run build`. You can now upload the `build` folder on your own server.
+
+*Note : If you use your own fork, feel free to change the footer links (Github/Twitter) in `src/components/Deck.js`.*
+
 ## CHANGELOG
 
 See [CHANGELOG](./CHANGELOG.md).
@@ -26,4 +39,5 @@ See [CHANGELOG](./CHANGELOG.md).
 Made with <3 by [Djiit](https://twitter.com/Djiit).
 
 Found a bug ? [Please file up an issue](https://github.com/Djiit/vgmapper/issues).
-Have an idea ? Tell me on Twitter !
+
+Have an idea ? [Tell me on Twitter](https://twitter.com/Djiit)!
