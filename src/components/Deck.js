@@ -41,7 +41,7 @@ class Deck extends Component {
               <a href="https://github.com/Djiit/vgmapper" target="_blank"><span className="icon"><i className="fa fa-github"></i></span></a>
               <a href="https://twitter.com/Djiit" target="_blank"><span className="icon"><i className="fa fa-twitter"></i></span></a>
             </span>
-            <span className="is-pulled-left">v0.3.2</span>
+            <span className="is-pulled-left">v0.4.0</span>
           </footer>
         </div>
     );
