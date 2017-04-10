@@ -39,15 +39,16 @@ export const setUserData = (user) => {
 export const fetchUserData = (user) => {
   return (dispatch, getState) => {
     const { pos, timestamp } = getState().user;
-    fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players?filter[playerName]='+user.name, {headers: headers}) // here : replace "eu" by region in store
+    fetch('https://api.dc01.gamelockerapp.com/shards/'+user.region+'/players?filter[playerName]='+user.name, {headers: headers})
       .then((response) => {
         //console.log(response) // see response object here. How can we show the user 404, etc...
+        // we have to prevent misregion here
         return response.json()
       })
       .then((responseJson) => {
         // Save user data in Firebase
         dataBase[user.region].set(responseJson.data[0].id, pos);
-        firebaseRef.ref().child('locations/'+user.region+'/'+responseJson.data[0].id).update({timestamp});
+        firebaseRef.ref().child('locations/'+user.region+'/'+responseJson.data[0].id).update({...responseJson.data[0], timestamp});
         return dispatch(setUserData(user));
       })
       .catch((error) => {
@@ -79,20 +80,11 @@ export const fetchNearbyUsers = (region) => { // obligé de passer region ?
     });
 
     geoQuery.on("key_entered", (key, location, distance) => {
-     // Ask VG API
-     fetch('https://api.dc01.gamelockerapp.com/shards/'+region+'/players/'+key, {headers: headers})
-       .then((response) => response.json())
-       .then((responseJson) => {
-         console.log({...responseJson.data, location, distance})
-         return {...responseJson.data, location, distance};
-       })
-       .then((playerData) => {
-         firebaseRef.ref('/locations/' + region + '/' + key).once('value').then(function(snapshot) {
-           const timestamp = snapshot.val().timestamp;
-          return dispatch(addNewPlayer({...playerData, timestamp}));
-        })
-       })
-       .catch((error) => {
+     firebaseRef.ref('/locations/' + region + '/' + key).once('value').then(function(snapshot) {
+       const values = snapshot.val();
+       return dispatch(addNewPlayer({...values, location, distance}));
+     })
+     .catch((error) => {
        console.log(error.message);
      });
     });

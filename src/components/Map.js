@@ -45,14 +45,18 @@ class VainLocatorMap extends Component {
   render() {
     let playersMarkers = [];
     if (this.props.user.players !== null) {
-      playersMarkers = this.props.user.players.map(p => (
-        <PlayerMarker
-          key={p.id}
-          lat={p.location[0]}
-          lng={p.location[1]}
-          text={p.attributes.name}
-        />
-      ));
+      playersMarkers = this.props.user.players.map(p => {
+        if (p.attributes !== undefined) {
+          return (
+            <PlayerMarker
+              key={p.id}
+              lat={p.location[0]}
+              lng={p.location[1]}
+              text={p.attributes.name}
+            />
+          )
+        }
+      });
     }
     return this.props.user.name ? (
       <GoogleMapReact

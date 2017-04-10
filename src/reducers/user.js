@@ -1,6 +1,7 @@
 export default(state = {players:[]}, payload) => {
   switch (payload.type) {
     case 'SET_USER_DATA':
+    console.log(payload)
       return {...state,
         name: payload.name,
         region: payload.region

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0
+
+* *FIX* Avoid fetching the API too many time.
+
 ## 0.3.2
 
 * *ADD* proper disclaimer about user location being saved in DB.
